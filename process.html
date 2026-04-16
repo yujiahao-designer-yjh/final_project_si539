@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Adoption Process –Paws & Home</title>
+  <link rel="stylesheet" href="css/html5reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="logo">Paws & Home</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="pets.html">Available Pets</a></li>
+      <li><a href="process.html" class="active">Adoption Process</a></li>
+      <li><a href="apply.html">Apply Now</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </nav>
+
+  <section class="page-header">
+    <h1>Adoption Process</h1>
+    <p>A simple, clear guide to help you bring your new pet home.</p>
+  </section>
+
+  <!-- Steps Timeline -->
+  <section class="process-section">
+    <div class="section-header">
+      <h2>How It Works</h2>
+      <p>We've made the process as welcoming and straightforward as possible.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-icon">01</div>
+        <div class="timeline-content">
+          <h3>Browse Available Pets</h3>
+          <p>Start by exploring our <a href="pets.html">Available Pets</a> page. Filter by cats or dogs and read each pet's profile to find one that matches your lifestyle and energy level.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-icon">02</div>
+        <div class="timeline-content">
+          <h3>Submit an Adoption Application</h3>
+          <p>Fill out our <a href="apply.html">Adoption Application Form</a>. It asks about your living situation, experience with pets, and why you'd like to adopt. Takes about 10 minutes.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-icon">03</div>
+        <div class="timeline-content">
+          <h3>Application Review</h3>
+          <p>Our team reviews your application within 24–48 hours. We look for a good match — not a perfect record. First-time owners are always welcome.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-icon">04</div>
+        <div class="timeline-content">
+          <h3>Meet & Greet</h3>
+          <p>If approved, we schedule an in-person or virtual meet-and-greet. This lets you and the pet make sure it's a great match before finalizing.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-icon">05</div>
+        <div class="timeline-content">
+          <h3>Finalize Adoption & Take Them Home</h3>
+          <p>After a successful meet-and-greet, sign the adoption agreement and pay the adoption fee. Then take your new family member home! </p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-icon">06</div>
+        <div class="timeline-content">
+          <h3>Post-Adoption Support</h3>
+          <p>Our team provides resources, tips, and check-ins to make sure both you and your pet are happy and thriving.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✨ Interactive Readiness Checklist -->
+  <section class="checklist-section">
+    <div class="section-header">
+      <h2>Are You Ready to Adopt?</h2>
+      <p>Check off each item to see how prepared you are.</p>
+    </div>
+    <div class="checklist-container">
+      <div class="checklist-progress-bar">
+        <div class="checklist-fill" id="checklistFill"></div>
+      </div>
+      <p class="checklist-score" id="checklistScore">0 of 8 completed</p>
+
+      <ul class="checklist" id="checklist">
+        <li><label><input type="checkbox" onchange="updateChecklist()"/> I am 18 years of age or older.</label></li>
+        <li><label><input type="checkbox" onchange="updateChecklist()"/> My home allows pets (or I have landlord approval).</label></li>
+        <li><label><input type="checkbox" onchange="updateChecklist()"/> I have enough time to care for a pet daily.</label></li>
+        <li><label><input type="checkbox" onchange="updateChecklist()"/> I can afford food, vet visits, and supplies.</label></li>
+        <li><label><input type="checkbox" onchange="updateChecklist()"/> I have researched the responsibilities of pet ownership.</label></li>
+        <li><label><input type="checkbox" onchange="updateChecklist()"/> I have a plan for my pet when I travel or work long hours.</label></li>
+        <li><label><input type="checkbox" onchange="updateChecklist()"/> Everyone in my household agrees to adopt a pet.</label></li>
+        <li><label><input type="checkbox" onchange="updateChecklist()"/> I am prepared for a long-term commitment (10–15+ years).</label></li>
+      </ul>
+
+      <div class="checklist-result hidden" id="checklistResult"></div>
+    </div>
+  </section>
+
+  <!-- ✨ Monthly Cost Calculator -->
+  <section class="calculator-section">
+    <div class="section-header">
+      <h2>Monthly Cost Estimator</h2>
+      <p>Get a rough idea of what owning a pet might cost each month.</p>
+    </div>
+    <div class="calculator-container">
+      <div class="calc-inputs">
+
+        <div class="calc-group">
+          <label>Pet Type</label>
+          <div class="calc-toggle">
+            <button class="calc-toggle-btn active" onclick="setPetType('dog', this)">Dog</button>
+            <button class="calc-toggle-btn" onclick="setPetType('cat', this)">Cat</button>
+          </div>
+        </div>
+
+        <div class="calc-group">
+          <label>Pet Size (dogs only)</label>
+          <select id="petSize" onchange="calcCost()">
+            <option value="small">Small (under 25 lbs)</option>
+            <option value="medium" selected>Medium (25–60 lbs)</option>
+            <option value="large">Large (60+ lbs)</option>
+          </select>
+        </div>
+
+        <div class="calc-group">
+          <label>
+            <input type="checkbox" id="includeGrooming" onchange="calcCost()"/> Include professional grooming
+          </label>
+        </div>
+        <div class="calc-group">
+          <label>
+            <input type="checkbox" id="includePetInsurance" onchange="calcCost()"/> Include pet insurance
+          </label>
+        </div>
+        <div class="calc-group">
+          <label>
+            <input type="checkbox" id="includeDaycare" onchange="calcCost()"/> Include doggy daycare / pet sitter
+          </label>
+        </div>
+
+      </div>
+
+      <div class="calc-results" id="calcResults">
+        <h3>Estimated Monthly Cost</h3>
+        <ul class="cost-breakdown" id="costBreakdown"></ul>
+        <div class="cost-total">
+          <span>Total</span>
+          <span id="costTotal">$0 / month</span>
+        </div>
+        <p class="cost-note">* These are rough estimates. Actual costs vary by location and individual pet needs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Requirements -->
+  <section class="requirements-section">
+    <div class="section-header">
+      <h2>Adoption Requirements</h2>
+      <p>Here's what you'll need to qualify for adoption.</p>
+    </div>
+    <div class="requirements-grid">
+      <div class="req-card">
+        <div class="req-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="26" height="26"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3>Be 18 or Older</h3>
+        <p>All applicants must be at least 18 years of age to adopt a pet.</p>
+      </div>
+      <div class="req-card">
+        <div class="req-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="26" height="26"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Pet-Friendly Home</h3>
+        <p>You must live in a space that allows pets. Renters should show landlord approval.</p>
+      </div>
+      <div class="req-card">
+        <div class="req-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="26" height="26"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Time Commitment</h3>
+        <p>Pets need time and attention daily. Please be honest about your schedule.</p>
+      </div>
+      <div class="req-card">
+        <div class="req-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="26" height="26"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <h3>Financial Readiness</h3>
+        <p>Owning a pet involves food, vet visits, and supplies. Be ready for the financial responsibility.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Adoption Fees -->
+  <section class="fee-section">
+    <div class="fee-box">
+      <h2>Adoption Fees</h2>
+      <p>Our fees help cover veterinary care, vaccinations, and shelter costs.</p>
+      <div class="fee-grid">
+        <div class="fee-item"><span class="fee-animal">Dogs</span><span class="fee-amount">$150</span></div>
+        <div class="fee-item"><span class="fee-animal">Cats</span><span class="fee-amount">$100</span></div>
+      </div>
+      <p class="fee-note">All pets are vaccinated, microchipped, and spayed/neutered before adoption.</p>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="cta-content">
+      <h2>Ready to Get Started?</h2>
+      <p>Browse our available pets and submit your adoption application today.</p>
+      <a href="apply.html" class="btn btn-white">Apply Now</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><p class="logo">Paws & Home</p><p>Making pet adoption simple,<br/>welcoming, and joyful.</p></div>
+      <div class="footer-links"><h4>Pages</h4><ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pets.html">Available Pets</a></li>
+        <li><a href="process.html">Adoption Process</a></li>
+        <li><a href="apply.html">Apply Now</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul></div>
+      <div class="footer-contact"><h4>Contact</h4>
+        <p>hello@pawsandhome.org</p>
+        <p>(734) 555-0192</p>
+        <p>Ann Arbor, MI</p>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025Paws & Home. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() { document.querySelector('.nav-links').classList.toggle('open'); }
+
+    // ── Readiness Checklist ──
+    function updateChecklist() {
+      const boxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      const checked = Array.from(boxes).filter(b => b.checked).length;
+      const total = boxes.length;
+      const pct = Math.round((checked / total) * 100);
+
+      document.getElementById('checklistFill').style.width = pct + '%';
+      document.getElementById('checklistScore').textContent = `${checked} of ${total} completed`;
+
+      const resultEl = document.getElementById('checklistResult');
+      resultEl.classList.remove('hidden', 'result-ready', 'result-almost', 'result-notyet');
+
+      if (pct === 100) {
+        resultEl.className = 'checklist-result result-ready';
+        resultEl.innerHTML = ' <strong>You\'re ready to adopt!</strong> Head over to our application form and get started.';
+      } else if (pct >= 62) {
+        resultEl.className = 'checklist-result result-almost';
+        resultEl.innerHTML = '<strong>Almost there!</strong> Review the remaining items and make sure you feel confident before applying.';
+      } else {
+        resultEl.className = 'checklist-result result-notyet';
+        resultEl.innerHTML = '<strong>A few things to consider.</strong> Take some time to prepare — adopting a pet is a big and wonderful commitment.';
+      }
+    }
+
+    // ── Cost Calculator ──
+    let petType = 'dog';
+
+    function setPetType(type, btn) {
+      petType = type;
+      document.querySelectorAll('.calc-toggle-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('petSize').disabled = type === 'cat';
+      calcCost();
+    }
+
+    function calcCost() {
+      const size = document.getElementById('petSize').value;
+      const grooming = document.getElementById('includeGrooming').checked;
+      const insurance = document.getElementById('includePetInsurance').checked;
+      const daycare = document.getElementById('includeDaycare').checked;
+
+      let food, vet, supplies;
+
+      if (petType === 'cat') {
+        food = 40; vet = 25; supplies = 15;
+      } else {
+        food = size === 'small' ? 40 : size === 'medium' ? 60 : 90;
+        vet = size === 'small' ? 20 : size === 'medium' ? 30 : 40;
+        supplies = 20;
+      }
+
+      const groomCost = grooming ? (petType === 'cat' ? 30 : size === 'large' ? 80 : 55) : 0;
+      const insCost = insurance ? 35 : 0;
+      const daycareCost = daycare ? (petType === 'cat' ? 0 : 120) : 0;
+      const total = food + vet + supplies + groomCost + insCost + daycareCost;
+
+      const items = [
+        { label: 'Food', cost: food },
+        { label: 'Routine vet (monthly avg)', cost: vet },
+        { label: 'Supplies & litter/toys', cost: supplies },
+      ];
+      if (grooming) items.push({ label: 'Grooming', cost: groomCost });
+      if (insurance) items.push({ label: 'Pet insurance', cost: insCost });
+      if (daycare && petType === 'dog') items.push({ label: 'Doggy daycare / sitter', cost: daycareCost });
+
+      document.getElementById('costBreakdown').innerHTML = items
+        .map(i => `<li><span>${i.label}</span><span>$${i.cost}</span></li>`).join('');
+      document.getElementById('costTotal').textContent = `$${total} / month`;
+    }
+
+    // Initialize
+    calcCost();
+  </script>
+</body>
+</html>

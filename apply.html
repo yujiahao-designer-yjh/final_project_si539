@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apply to Adopt –Paws & Home</title>
+  <link rel="stylesheet" href="css/html5reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="logo">Paws & Home</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="pets.html">Available Pets</a></li>
+      <li><a href="process.html">Adoption Process</a></li>
+      <li><a href="apply.html" class="active">Apply Now</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </nav>
+
+  <section class="page-header">
+    <h1>Adoption Application</h1>
+    <p>Fill out the form below and we'll get back to you within 24–48 hours.</p>
+  </section>
+
+  <section class="form-section">
+    <div class="form-container">
+
+      <!-- Progress Steps -->
+      <div class="form-progress">
+        <div class="progress-step active" id="step-indicator-1">1. About You</div>
+        <div class="progress-step" id="step-indicator-2">2. Your Home</div>
+        <div class="progress-step" id="step-indicator-3">3. Pet Preference</div>
+      </div>
+
+      <!-- ✨ Auto-save notice -->
+      <div class="autosave-notice" id="autosaveNotice"></div>
+
+      <!-- Success Message -->
+      <div class="form-success" id="successMessage" style="display:none;">
+        <div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="56" height="56"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg></div>
+        <h2>Application Submitted!</h2>
+        <p>Thank you for applying! Our team will review your application and reach out within 24–48 hours.</p>
+        <a href="pets.html" class="btn btn-primary">Browse More Pets</a>
+      </div>
+
+      <div id="formContent">
+        <!-- Step 1 -->
+        <div class="form-step" id="step1">
+          <h2 class="form-step-title">About You</h2>
+
+          <!-- ✨ Inline strength indicator for name -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name <span class="required">*</span></label>
+              <input type="text" id="firstName" placeholder="e.g. Jane" oninput="saveDraft()"/>
+              <span class="error-msg" id="err-firstName"></span>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name <span class="required">*</span></label>
+              <input type="text" id="lastName" placeholder="e.g. Smith" oninput="saveDraft()"/>
+              <span class="error-msg" id="err-lastName"></span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email Address <span class="required">*</span></label>
+              <input type="email" id="email" placeholder="you@example.com" oninput="saveDraft()"/>
+              <span class="error-msg" id="err-email"></span>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number <span class="required">*</span></label>
+              <input type="tel" id="phone" placeholder="(555) 000-0000" oninput="saveDraft()"/>
+              <span class="error-msg" id="err-phone"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="age">Your Age <span class="required">*</span></label>
+            <input type="number" id="age" min="18" max="120" placeholder="Must be 18 or older" oninput="saveDraft()"/>
+            <span class="error-msg" id="err-age"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="occupation">Occupation</label>
+            <input type="text" id="occupation" placeholder="e.g. Student, Software Engineer" oninput="saveDraft()"/>
+          </div>
+
+          <!-- ✨ Draft clear button -->
+          <div class="draft-bar">
+            <span id="draftStatus"></span>
+            <button class="draft-clear-btn" onclick="clearDraft()" type="button">🗑 Clear saved draft</button>
+          </div>
+
+          <div class="form-nav">
+            <span></span>
+            <button class="btn btn-primary" onclick="goToStep(2)">Next: Your Home →</button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="form-step hidden" id="step2">
+          <h2 class="form-step-title">Your Home</h2>
+
+          <div class="form-group">
+            <label for="homeType">Type of Home <span class="required">*</span></label>
+            <select id="homeType" onchange="saveDraft()">
+              <option value="">-- Select --</option>
+              <option value="house">House</option>
+              <option value="apartment">Apartment</option>
+              <option value="condo">Condo</option>
+              <option value="townhouse">Townhouse</option>
+              <option value="dorm">Dorm / Student Housing</option>
+            </select>
+            <span class="error-msg" id="err-homeType"></span>
+          </div>
+
+          <div class="form-group">
+            <label>Do you rent or own? <span class="required">*</span></label>
+            <div class="radio-group">
+              <label class="radio-label"><input type="radio" name="rentOwn" value="own" onchange="saveDraft()"/> I own my home</label>
+              <label class="radio-label"><input type="radio" name="rentOwn" value="rent" onchange="saveDraft()"/> I rent</label>
+            </div>
+            <span class="error-msg" id="err-rentOwn"></span>
+          </div>
+
+          <div class="form-group" id="landlordGroup" style="display:none;">
+            <label for="landlordApproval">Has your landlord approved pets? <span class="required">*</span></label>
+            <select id="landlordApproval" onchange="saveDraft()">
+              <option value="">-- Select --</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+              <option value="pending">Not yet asked</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Do you have a yard or outdoor space?</label>
+            <div class="radio-group">
+              <label class="radio-label"><input type="radio" name="yard" value="yes" onchange="saveDraft()"/> Yes</label>
+              <label class="radio-label"><input type="radio" name="yard" value="no" onchange="saveDraft()"/> No</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Do you have any other pets at home?</label>
+            <div class="radio-group">
+              <label class="radio-label"><input type="radio" name="otherPets" value="yes" onchange="saveDraft()"/> Yes</label>
+              <label class="radio-label"><input type="radio" name="otherPets" value="no" onchange="saveDraft()"/> No</label>
+            </div>
+          </div>
+
+          <div class="form-nav">
+            <button class="btn btn-secondary" onclick="goToStep(1)">← Back</button>
+            <button class="btn btn-primary" onclick="goToStep(3)">Next: Pet Preference →</button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="form-step hidden" id="step3">
+          <h2 class="form-step-title">Pet Preference</h2>
+
+          <div class="form-group">
+            <label for="petInterest">Which pet are you interested in? <span class="required">*</span></label>
+            <select id="petInterest" onchange="saveDraft()">
+              <option value="">-- Select a pet --</option>
+              <option value="max">Max – Golden Retriever, Male, 2 yrs</option>
+              <option value="luna">Luna – Tabby Cat, Female, 1 yr</option>
+              <option value="buddy">Buddy – Beagle, Male, 3 yrs</option>
+              <option value="mochi">Mochi – Persian Cat, Female, 4 yrs</option>
+              <option value="daisy">Daisy – Labrador, Female, 1.5 yrs</option>
+              <option value="any">Open to any pet</option>
+            </select>
+            <span class="error-msg" id="err-petInterest"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="petExperience">Have you owned a pet before? <span class="required">*</span></label>
+            <select id="petExperience" onchange="saveDraft()">
+              <option value="">-- Select --</option>
+              <option value="first-time">No, this is my first time</option>
+              <option value="some">Yes, I had pets growing up</option>
+              <option value="experienced">Yes, I've owned pets as an adult</option>
+            </select>
+            <span class="error-msg" id="err-petExperience"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="hoursAlone">How many hours per day will the pet be home alone? <span class="required">*</span></label>
+            <select id="hoursAlone" onchange="saveDraft()">
+              <option value="">-- Select --</option>
+              <option value="0-2">0–2 hours</option>
+              <option value="2-4">2–4 hours</option>
+              <option value="4-6">4–6 hours</option>
+              <option value="6-8">6–8 hours</option>
+              <option value="8+">More than 8 hours</option>
+            </select>
+            <span class="error-msg" id="err-hoursAlone"></span>
+          </div>
+
+          <!-- ✨ Textarea with character counter -->
+          <div class="form-group">
+            <label for="whyAdopt">Why do you want to adopt? <span class="required">*</span>
+              <span class="char-count" id="charCount">0 / 500</span>
+            </label>
+            <textarea id="whyAdopt" rows="5" maxlength="500"
+              placeholder="Tell us a little about why you'd like to adopt and what kind of home you'll provide..."
+              oninput="updateCharCount(); saveDraft()"></textarea>
+            <span class="error-msg" id="err-whyAdopt"></span>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="agreeTerms" onchange="saveDraft()"/>
+              I agree to the adoption terms and understand the responsibilities of pet ownership. <span class="required">*</span>
+            </label>
+            <span class="error-msg" id="err-agreeTerms"></span>
+          </div>
+
+          <div class="form-nav">
+            <button class="btn btn-secondary" onclick="goToStep(2)">← Back</button>
+            <button class="btn btn-primary" onclick="submitForm()">Submit Application ✓</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><p class="logo">Paws & Home</p><p>Making pet adoption simple,<br/>welcoming, and joyful.</p></div>
+      <div class="footer-links"><h4>Pages</h4><ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pets.html">Available Pets</a></li>
+        <li><a href="process.html">Adoption Process</a></li>
+        <li><a href="apply.html">Apply Now</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul></div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>yujiahao@umich.edu</p>
+        <p>(513) 726-8898</p>
+        <p>Ann Arbor, MI</p>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025Paws & Home. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() { document.querySelector('.nav-links').classList.toggle('open'); }
+
+    // Show landlord field when renting
+    document.querySelectorAll('input[name="rentOwn"]').forEach(r => {
+      r.addEventListener('change', function() {
+        document.getElementById('landlordGroup').style.display = this.value === 'rent' ? 'block' : 'none';
+      });
+    });
+
+    // ── Character Counter ──
+    function updateCharCount() {
+      const ta = document.getElementById('whyAdopt');
+      const count = ta.value.length;
+      const el = document.getElementById('charCount');
+      el.textContent = `${count} / 500`;
+      el.style.color = count > 450 ? '#e05252' : count > 350 ? '#b07a00' : 'var(--text-light)';
+    }
+
+    // ── Auto-save Draft to localStorage ──
+    const DRAFT_KEY = 'pawsFormDraft';
+
+    function saveDraft() {
+      const draft = {
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        age: document.getElementById('age').value,
+        occupation: document.getElementById('occupation').value,
+        homeType: document.getElementById('homeType').value,
+        petInterest: document.getElementById('petInterest').value,
+        petExperience: document.getElementById('petExperience').value,
+        hoursAlone: document.getElementById('hoursAlone').value,
+        whyAdopt: document.getElementById('whyAdopt').value,
+        savedAt: new Date().toLocaleTimeString(),
+      };
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+      const notice = document.getElementById('autosaveNotice');
+      const status = document.getElementById('draftStatus');
+      notice.textContent = '✓ Draft auto-saved';
+      notice.classList.add('show');
+      if (status) status.textContent = `Last saved at ${draft.savedAt}`;
+      setTimeout(() => notice.classList.remove('show'), 2000);
+    }
+
+    function loadDraft() {
+      const raw = localStorage.getItem(DRAFT_KEY);
+      if (!raw) return;
+      try {
+        const d = JSON.parse(raw);
+        if (d.firstName) document.getElementById('firstName').value = d.firstName;
+        if (d.lastName) document.getElementById('lastName').value = d.lastName;
+        if (d.email) document.getElementById('email').value = d.email;
+        if (d.phone) document.getElementById('phone').value = d.phone;
+        if (d.age) document.getElementById('age').value = d.age;
+        if (d.occupation) document.getElementById('occupation').value = d.occupation;
+        if (d.homeType) document.getElementById('homeType').value = d.homeType;
+        if (d.petInterest) document.getElementById('petInterest').value = d.petInterest;
+        if (d.petExperience) document.getElementById('petExperience').value = d.petExperience;
+        if (d.hoursAlone) document.getElementById('hoursAlone').value = d.hoursAlone;
+        if (d.whyAdopt) { document.getElementById('whyAdopt').value = d.whyAdopt; updateCharCount(); }
+        const status = document.getElementById('draftStatus');
+        if (status && d.savedAt) status.textContent = `Draft restored from ${d.savedAt}`;
+      } catch(e) {}
+    }
+
+    function clearDraft() {
+      localStorage.removeItem(DRAFT_KEY);
+      document.getElementById('draftStatus').textContent = 'Draft cleared.';
+    }
+
+    window.addEventListener('load', loadDraft);
+
+    // ── Step Navigation ──
+    function goToStep(stepNum) {
+      if (stepNum === 2 && !validateStep1()) return;
+      if (stepNum === 3 && !validateStep2()) return;
+      document.querySelectorAll('.form-step').forEach(s => s.classList.add('hidden'));
+      document.getElementById('step' + stepNum).classList.remove('hidden');
+      document.querySelectorAll('.progress-step').forEach((s, i) => {
+        s.classList.remove('active', 'done');
+        if (i + 1 < stepNum) s.classList.add('done');
+        if (i + 1 === stepNum) s.classList.add('active');
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showError(id, msg) {
+      const el = document.getElementById('err-' + id);
+      if (el) el.textContent = msg;
+      const input = document.getElementById(id);
+      if (input) input.classList.add('input-error');
+    }
+    function clearError(id) {
+      const el = document.getElementById('err-' + id);
+      if (el) el.textContent = '';
+      const input = document.getElementById(id);
+      if (input) input.classList.remove('input-error');
+    }
+
+    function validateStep1() {
+      let valid = true;
+      ['firstName','lastName','email','phone','age'].forEach(clearError);
+      if (!document.getElementById('firstName').value.trim()) { showError('firstName','First name is required.'); valid=false; }
+      if (!document.getElementById('lastName').value.trim()) { showError('lastName','Last name is required.'); valid=false; }
+      const email = document.getElementById('email').value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('email','Please enter a valid email.'); valid=false; }
+      if (!document.getElementById('phone').value.trim()) { showError('phone','Phone number is required.'); valid=false; }
+      const age = parseInt(document.getElementById('age').value);
+      if (!age || age < 18) { showError('age','You must be at least 18 years old.'); valid=false; }
+      return valid;
+    }
+
+    function validateStep2() {
+      let valid = true;
+      clearError('homeType'); clearError('rentOwn');
+      if (!document.getElementById('homeType').value) { showError('homeType','Please select your home type.'); valid=false; }
+      if (!document.querySelector('input[name="rentOwn"]:checked')) { showError('rentOwn','Please select rent or own.'); valid=false; }
+      return valid;
+    }
+
+    function submitForm() {
+      let valid = true;
+      ['petInterest','petExperience','hoursAlone','whyAdopt','agreeTerms'].forEach(clearError);
+      if (!document.getElementById('petInterest').value) { showError('petInterest','Please select a pet.'); valid=false; }
+      if (!document.getElementById('petExperience').value) { showError('petExperience','Please select experience level.'); valid=false; }
+      if (!document.getElementById('hoursAlone').value) { showError('hoursAlone','Please select daily alone time.'); valid=false; }
+      if (!document.getElementById('whyAdopt').value.trim()) { showError('whyAdopt','Please tell us why you want to adopt.'); valid=false; }
+      if (!document.getElementById('agreeTerms').checked) { showError('agreeTerms','You must agree to the adoption terms.'); valid=false; }
+      if (!valid) return;
+      localStorage.removeItem(DRAFT_KEY);
+      document.getElementById('formContent').style.display = 'none';
+      document.querySelector('.form-progress').style.display = 'none';
+      document.getElementById('successMessage').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

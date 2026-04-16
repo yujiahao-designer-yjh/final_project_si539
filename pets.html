@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Available Pets –Paws & Home</title>
+  <link rel="stylesheet" href="css/html5reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="logo">Paws & Home</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="pets.html" class="active">Available Pets</a></li>
+      <li><a href="process.html">Adoption Process</a></li>
+      <li><a href="apply.html">Apply Now</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </nav>
+
+  <section class="page-header">
+    <h1>Available Pets</h1>
+    <p>Browse our adorable cats and dogs looking for their forever home.</p>
+  </section>
+
+  <!-- ✨ Search + Filter + Sort Bar -->
+  <section class="filter-bar">
+    <div class="filter-bar-left">
+      <button class="filter-btn active" onclick="setFilter('all', this)">All Pets</button>
+      <button class="filter-btn" onclick="setFilter('dog', this)">Dogs</button>
+      <button class="filter-btn" onclick="setFilter('cat', this)">Cats</button>
+      <button class="filter-btn" onclick="setFilter('favorite', this)">❤️ My Favorites <span id="favCount"></span></button>
+    </div>
+    <div class="filter-bar-right">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search by name or breed..." oninput="applyFilters()"/>
+      <select id="sortSelect" class="sort-select" onchange="applyFilters()">
+        <option value="default">Sort: Default</option>
+        <option value="age-asc">Age: Youngest first</option>
+        <option value="age-desc">Age: Oldest first</option>
+        <option value="name-asc">Name: A → Z</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- No results message -->
+  <div id="noResults" class="no-results hidden">
+    <p>No pets match your search. <button onclick="resetFilters()">Clear filters</button></p>
+  </div>
+
+  <!-- Pets Grid -->
+  <section class="pets-section">
+    <div class="pets-grid" id="petsGrid">
+
+      <div class="pet-card-full" data-type="dog" data-name="Max" data-breed="golden retriever" data-age="2" data-id="max">
+        <div class="pet-card-img">
+          <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=500&q=80" alt="Max"/>
+          <span class="pet-badge">Dog</span>
+          <button class="fav-btn" onclick="toggleFav('max', this)" title="Add to favorites">♡</button>
+        </div>
+        <div class="pet-card-body">
+          <h3>Max</h3>
+          <div class="pet-tags"><span>Golden Retriever</span><span>2 years</span><span>Male</span></div>
+          <p>Max is a friendly and energetic golden retriever who loves people and other pets. Great for active families and first-time owners.</p>
+          <div class="pet-card-footer">
+            <span class="pet-status available">Available</span>
+            <div class="card-btns">
+              <button class="btn btn-small btn-outline" onclick="openModal('max')">View Profile</button>
+              <a href="apply.html" class="btn btn-small">Adopt</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pet-card-full" data-type="cat" data-name="Luna" data-breed="tabby cat" data-age="1" data-id="luna">
+        <div class="pet-card-img">
+          <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?w=500&q=80" alt="Luna"/>
+          <span class="pet-badge">Cat</span>
+          <button class="fav-btn" onclick="toggleFav('luna', this)" title="Add to favorites">♡</button>
+        </div>
+        <div class="pet-card-body">
+          <h3>Luna</h3>
+          <div class="pet-tags"><span>Tabby Cat</span><span>1 year</span><span>Female</span></div>
+          <p>Luna is a calm and curious tabby who loves cozy spaces and gentle attention. Ideal for apartment living.</p>
+          <div class="pet-card-footer">
+            <span class="pet-status available">Available</span>
+            <div class="card-btns">
+              <button class="btn btn-small btn-outline" onclick="openModal('luna')">View Profile</button>
+              <a href="apply.html" class="btn btn-small">Adopt</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pet-card-full" data-type="dog" data-name="Buddy" data-breed="beagle" data-age="3" data-id="buddy">
+        <div class="pet-card-img">
+          <img src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?w=500&q=80" alt="Buddy"/>
+          <span class="pet-badge">Dog</span>
+          <button class="fav-btn" onclick="toggleFav('buddy', this)" title="Add to favorites">♡</button>
+        </div>
+        <div class="pet-card-body">
+          <h3>Buddy</h3>
+          <div class="pet-tags"><span>Beagle</span><span>3 years</span><span>Male</span></div>
+          <p>Buddy is a playful beagle with a big personality. Loves sniffing around the yard and learning new tricks.</p>
+          <div class="pet-card-footer">
+            <span class="pet-status available">Available</span>
+            <div class="card-btns">
+              <button class="btn btn-small btn-outline" onclick="openModal('buddy')">View Profile</button>
+              <a href="apply.html" class="btn btn-small">Adopt</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pet-card-full" data-type="cat" data-name="Mochi" data-breed="persian cat" data-age="4" data-id="mochi">
+        <div class="pet-card-img">
+          <img src="https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?w=500&q=80" alt="Mochi"/>
+          <span class="pet-badge">Cat</span>
+          <button class="fav-btn" onclick="toggleFav('mochi', this)" title="Add to favorites">♡</button>
+        </div>
+        <div class="pet-card-body">
+          <h3>Mochi</h3>
+          <div class="pet-tags"><span>Persian Cat</span><span>4 years</span><span>Female</span></div>
+          <p>Mochi is a sweet and quiet Persian who enjoys soft beds and window sills. Great for quiet households.</p>
+          <div class="pet-card-footer">
+            <span class="pet-status available">Available</span>
+            <div class="card-btns">
+              <button class="btn btn-small btn-outline" onclick="openModal('mochi')">View Profile</button>
+              <a href="apply.html" class="btn btn-small">Adopt</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pet-card-full" data-type="dog" data-name="Daisy" data-breed="labrador" data-age="1" data-id="daisy">
+        <div class="pet-card-img">
+          <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?w=500&q=80" alt="Daisy"/>
+          <span class="pet-badge">Dog</span>
+          <button class="fav-btn" onclick="toggleFav('daisy', this)" title="Add to favorites">♡</button>
+        </div>
+        <div class="pet-card-body">
+          <h3>Daisy</h3>
+          <div class="pet-tags"><span>Labrador</span><span>1.5 years</span><span>Female</span></div>
+          <p>Daisy is an enthusiastic young lab, house-trained and great with kids and other dogs.</p>
+          <div class="pet-card-footer">
+            <span class="pet-status available">Available</span>
+            <div class="card-btns">
+              <button class="btn btn-small btn-outline" onclick="openModal('daisy')">View Profile</button>
+              <a href="apply.html" class="btn btn-small">Adopt</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pet-card-full" data-type="cat" data-name="Oliver" data-breed="domestic shorthair" data-age="2" data-id="oliver">
+        <div class="pet-card-img">
+          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&q=80" alt="Oliver"/>
+          <span class="pet-badge">Cat</span>
+          <button class="fav-btn" onclick="toggleFav('oliver', this)" title="Add to favorites">♡</button>
+        </div>
+        <div class="pet-card-body">
+          <h3>Oliver</h3>
+          <div class="pet-tags"><span>Domestic Shorthair</span><span>2 years</span><span>Male</span></div>
+          <p>Oliver is playful and affectionate, loves chasing toys and cuddling at night. Adapts well to new homes.</p>
+          <div class="pet-card-footer">
+            <span class="pet-status pending">Pending</span>
+            <div class="card-btns">
+              <button class="btn btn-small btn-outline" onclick="openModal('oliver')">View Profile</button>
+              <a href="apply.html" class="btn btn-small btn-disabled">On Hold</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ✨ Pet Detail Modal -->
+  <div class="modal-overlay hidden" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal-box" id="modalBox">
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+      <div class="modal-content" id="modalContent"></div>
+    </div>
+  </div>
+
+  <section class="cta-banner">
+    <div class="cta-content">
+      <h2>Found the One?</h2>
+      <p>Start your adoption application — it only takes a few minutes.</p>
+      <a href="apply.html" class="btn btn-white">Apply to Adopt</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="logo">Paws & Home</p>
+        <p>Making pet adoption simple,<br/>welcoming, and joyful.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="pets.html">Available Pets</a></li>
+          <li><a href="process.html">Adoption Process</a></li>
+          <li><a href="apply.html">Apply Now</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>yujiahao@umich.edu</p>
+        <p>(513) 726-8898</p>
+        <p>Ann Arbor, MI</p>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025Paws & Home. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() { document.querySelector('.nav-links').classList.toggle('open'); }
+
+    // ── Favorites ──
+    let favorites = JSON.parse(localStorage.getItem('pawsFavorites') || '[]');
+
+    function updateFavCount() {
+      const el = document.getElementById('favCount');
+      el.textContent = favorites.length > 0 ? `(${favorites.length})` : '';
+    }
+
+    function toggleFav(id, btn) {
+      const idx = favorites.indexOf(id);
+      if (idx === -1) {
+        favorites.push(id);
+        btn.textContent = '♥';
+        btn.classList.add('fav-active');
+      } else {
+        favorites.splice(idx, 1);
+        btn.textContent = '♡';
+        btn.classList.remove('fav-active');
+      }
+      localStorage.setItem('pawsFavorites', JSON.stringify(favorites));
+      updateFavCount();
+      applyFilters();
+    }
+
+    // Restore favorites on load
+    window.addEventListener('load', () => {
+      favorites.forEach(id => {
+        const card = document.querySelector(`[data-id="${id}"]`);
+        if (card) {
+          const btn = card.querySelector('.fav-btn');
+          btn.textContent = '♥';
+          btn.classList.add('fav-active');
+        }
+      });
+      updateFavCount();
+    });
+
+    // ── Filter + Search + Sort ──
+    let currentFilter = 'all';
+
+    function setFilter(type, btn) {
+      currentFilter = type;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const sort = document.getElementById('sortSelect').value;
+      const grid = document.getElementById('petsGrid');
+      const cards = Array.from(grid.querySelectorAll('.pet-card-full'));
+      let visible = 0;
+
+      // Sort cards
+      cards.sort((a, b) => {
+        if (sort === 'age-asc') return parseFloat(a.dataset.age) - parseFloat(b.dataset.age);
+        if (sort === 'age-desc') return parseFloat(b.dataset.age) - parseFloat(a.dataset.age);
+        if (sort === 'name-asc') return a.dataset.name.localeCompare(b.dataset.name);
+        return 0;
+      });
+      cards.forEach(c => grid.appendChild(c));
+
+      // Filter
+      cards.forEach(card => {
+        const typeMatch = currentFilter === 'all' || card.dataset.type === currentFilter
+          || (currentFilter === 'favorite' && favorites.includes(card.dataset.id));
+        const searchMatch = !query || card.dataset.name.toLowerCase().includes(query)
+          || card.dataset.breed.toLowerCase().includes(query);
+        const show = typeMatch && searchMatch;
+        card.style.display = show ? 'flex' : 'none';
+        if (show) visible++;
+      });
+
+      document.getElementById('noResults').classList.toggle('hidden', visible > 0);
+    }
+
+    function resetFilters() {
+      currentFilter = 'all';
+      document.getElementById('searchInput').value = '';
+      document.getElementById('sortSelect').value = 'default';
+      document.querySelectorAll('.filter-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
+      applyFilters();
+    }
+
+    // ── Modal ──
+    const petData = {
+      max:    { name:'Max', img:'https://images.unsplash.com/photo-1552053831-71594a27632d?w=700&q=80', breed:'Golden Retriever', age:'2 years', gender:'Male', status:'Available', traits:['Friendly','Energetic','Good with kids','House-trained'], desc:'Max is a warm and social golden retriever who thrives on outdoor adventures. He loves fetch, morning runs, and cuddling on the couch afterward. Max would be a wonderful companion for active first-time owners.' },
+      luna:   { name:'Luna', img:'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=700&q=80', breed:'Tabby Cat', age:'1 year', gender:'Female', status:'Available', traits:['Calm','Curious','Apartment-friendly','Low-maintenance'], desc:'Luna is a gentle tabby who loves a cozy corner and a warm lap. She communicates softly and adapts quickly to new spaces. Perfect for someone looking for a peaceful, affectionate companion.' },
+      buddy:  { name:'Buddy', img:'https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?w=700&q=80', breed:'Beagle', age:'3 years', gender:'Male', status:'Available', traits:['Playful','Vocal','Loves outdoors','Treat-motivated'], desc:'Buddy is a classic beagle with a nose for adventure and a heart full of love. He does best with daily walks and mental stimulation. He will make you laugh every single day.' },
+      mochi:  { name:'Mochi', img:'https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?w=700&q=80', breed:'Persian Cat', age:'4 years', gender:'Female', status:'Available', traits:['Quiet','Gentle','Indoor-only','Loves grooming'], desc:'Mochi is a serene, regal Persian with silky fur and a calm disposition. She enjoys being brushed, sitting in sunlit windows, and watching the world go by. Ideal for a quiet household.' },
+      daisy:  { name:'Daisy', img:'https://images.unsplash.com/photo-1517849845537-4d257902454a?w=700&q=80', breed:'Labrador', age:'1.5 years', gender:'Female', status:'Available', traits:['Energetic','Kid-friendly','House-trained','Loves water'], desc:'Daisy is an exuberant young lab who is ready to be your best friend. She is already crate-trained and picks up new commands quickly. She lights up every room she enters.' },
+      oliver: { name:'Oliver', img:'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=700&q=80', breed:'Domestic Shorthair', age:'2 years', gender:'Male', status:'Pending', traits:['Affectionate','Playful','Adaptable','Lap cat'], desc:'Oliver is a sweet and curious cat who bonds quickly with his humans. He loves interactive toys and snuggles equally. He is currently on hold but you can express interest for the waitlist.' },
+    };
+
+    function openModal(id) {
+      const p = petData[id];
+      if (!p) return;
+      document.getElementById('modalContent').innerHTML = `
+        <img src="${p.img}" alt="${p.name}" class="modal-img"/>
+        <div class="modal-info">
+          <div class="modal-top">
+            <h2>${p.name}</h2>
+            <span class="pet-status ${p.status === 'Available' ? 'available' : 'pending'}">${p.status}</span>
+          </div>
+          <div class="pet-tags" style="margin-bottom:1rem">
+            <span>${p.breed}</span><span>${p.age}</span><span>${p.gender}</span>
+          </div>
+          <p style="color:var(--text-mid);margin-bottom:1.2rem;line-height:1.7">${p.desc}</p>
+          <div class="modal-traits">
+            ${p.traits.map(t => `<span class="trait-tag">✓ ${t}</span>`).join('')}
+          </div>
+          <a href="apply.html" class="btn btn-primary" style="margin-top:1.5rem;display:inline-block">
+            ${p.status === 'Available' ? 'Adopt ' + p.name : 'Join Waitlist'}
+          </a>
+        </div>`;
+      document.getElementById('modalOverlay').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(e) {
+      if (e.target === document.getElementById('modalOverlay')) closeModalDirect();
+    }
+    function closeModalDirect() {
+      document.getElementById('modalOverlay').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
+  </script>
+</body>
+</html>

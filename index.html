@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Paws & Home – Pet Adoption for First-Time Owners</title>
+  <link rel="stylesheet" href="css/html5reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">Paws & Home</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="pets.html">Available Pets</a></li>
+      <li><a href="process.html">Adoption Process</a></li>
+      <li><a href="apply.html">Apply Now</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-label">Find Your Forever Friend</p>
+      <h1 class="hero-title">Every Pet Deserves<br/>A Loving Home</h1>
+      <p class="hero-desc">We connect first-time pet owners with cats and dogs who are ready to be part of your family. Simple, clear, and welcoming — your adoption journey starts here.</p>
+      <div class="hero-buttons">
+        <a href="pets.html" class="btn btn-primary">Meet Our Pets</a>
+        <a href="process.html" class="btn btn-secondary">How It Works</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="hero-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80" alt="Happy dog ready for adoption" />
+        <div class="hero-badge">200+ Happy Adoptions</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats (animated counters) -->
+  <section class="stats">
+    <div class="stat-item">
+      <div class="stat-row"><span class="stat-number" data-target="150">0</span><span class="stat-suffix">+</span></div>
+      <span class="stat-label">Pets Available</span>
+    </div>
+    <div class="stat-item">
+      <div class="stat-row"><span class="stat-number" data-target="200">0</span><span class="stat-suffix">+</span></div>
+      <span class="stat-label">Successful Adoptions</span>
+    </div>
+    <div class="stat-item">
+      <div class="stat-row"><span class="stat-number" data-target="5">0</span><span class="stat-suffix">★</span></div>
+      <span class="stat-label">Average Rating</span>
+    </div>
+    <div class="stat-item">
+      <div class="stat-row"><span class="stat-number" data-target="24">0</span><span class="stat-suffix">h</span></div>
+      <span class="stat-label">Response Time</span>
+    </div>
+  </section>
+
+  <!-- ✨ Pet Carousel -->
+  <section class="carousel-section">
+    <div class="section-header">
+      <h2>Pets Looking for a Home</h2>
+      <p>Browse our available animals — one of them could be yours.</p>
+    </div>
+
+    <div class="carousel-wrapper">
+      <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1)">&#8592;</button>
+      <div class="carousel-track-container">
+        <div class="carousel-track" id="carouselTrack">
+
+          <div class="carousel-slide">
+            <div class="carousel-slide-inner"><img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=600&q=80" alt="Max"/>
+            <div class="carousel-caption">
+              <span class="carousel-tag">Dog</span>
+              <h3>Max</h3>
+              <p>Golden Retriever · 2 yrs · Male</p>
+              <a href="apply.html" class="btn btn-small">Adopt Me</a>
+            </div></div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="carousel-slide-inner"><img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?w=600&q=80" alt="Luna"/>
+            <div class="carousel-caption">
+              <span class="carousel-tag">Cat</span>
+              <h3>Luna</h3>
+              <p>Tabby Cat · 1 yr · Female</p>
+              <a href="apply.html" class="btn btn-small">Adopt Me</a>
+            </div></div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="carousel-slide-inner"><img src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?w=600&q=80" alt="Buddy"/>
+            <div class="carousel-caption">
+              <span class="carousel-tag">Dog</span>
+              <h3>Buddy</h3>
+              <p>Beagle · 3 yrs · Male</p>
+              <a href="apply.html" class="btn btn-small">Adopt Me</a>
+            </div></div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="carousel-slide-inner"><img src="https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?w=600&q=80" alt="Mochi"/>
+            <div class="carousel-caption">
+              <span class="carousel-tag">Cat</span>
+              <h3>Mochi</h3>
+              <p>Persian Cat · 4 yrs · Female</p>
+              <a href="apply.html" class="btn btn-small">Adopt Me</a>
+            </div></div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="carousel-slide-inner"><img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?w=600&q=80" alt="Daisy"/>
+            <div class="carousel-caption">
+              <span class="carousel-tag">Dog</span>
+              <h3>Daisy</h3>
+              <p>Labrador · 1.5 yrs · Female</p>
+              <a href="apply.html" class="btn btn-small">Adopt Me</a>
+            </div></div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="carousel-slide-inner"><img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=600&q=80" alt="Oliver"/>
+            <div class="carousel-caption">
+              <span class="carousel-tag">Cat</span>
+              <h3>Oliver</h3>
+              <p>Domestic Shorthair · 2 yrs · Male</p>
+              <a href="apply.html" class="btn btn-small">Adopt Me</a>
+            </div></div>
+          </div></div>
+      </div>
+      <button class="carousel-btn carousel-next" onclick="moveCarousel(1)">&#8594;</button>
+    </div>
+    <div class="carousel-dots" id="carouselDots"></div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="features">
+    <div class="section-header">
+      <h2>WhyPaws & Home?</h2>
+      <p>We make adoption simple and supportive — especially for first-timers.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3>First-Timer Friendly</h3>
+        <p>Our step-by-step process and resources are designed specifically for people adopting for the first time.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <h3>Carefully Matched</h3>
+        <p>We help you find a pet that fits your lifestyle, living space, and experience level.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <h3>Ongoing Support</h3>
+        <p>Our team is available to answer questions before, during, and after your adoption.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <h3>Health Guaranteed</h3>
+        <p>All pets are vaccinated, spayed/neutered, and health-checked before adoption.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✨ Pet Match Quiz -->
+  <section class="quiz-section">
+    <div class="section-header">
+      <h2>Which Pet Is Right for You?</h2>
+      <p>Answer 3 quick questions and we'll suggest the best match.</p>
+    </div>
+    <div class="quiz-container" id="quizContainer">
+
+      <div class="quiz-step" id="q1">
+        <p class="quiz-question">How active is your lifestyle?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="nextQ('q1','q2','active')">Very active — I love outdoor activities</button>
+          <button class="quiz-opt" onclick="nextQ('q1','q2','moderate')">Moderate — I enjoy daily walks</button>
+          <button class="quiz-opt" onclick="nextQ('q1','q2','relaxed')">Relaxed — I prefer staying home</button>
+        </div>
+      </div>
+
+      <div class="quiz-step hidden" id="q2">
+        <p class="quiz-question">What's your living situation?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="nextQ('q2','q3','house')">House with a yard</button>
+          <button class="quiz-opt" onclick="nextQ('q2','q3','apartment')">Apartment or small space</button>
+          <button class="quiz-opt" onclick="nextQ('q2','q3','shared')">Shared housing / dorm</button>
+        </div>
+      </div>
+
+      <div class="quiz-step hidden" id="q3">
+        <p class="quiz-question">How much time can you spend with a pet daily?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="showResult('lots')">Lots — I'm home most of the day</button>
+          <button class="quiz-opt" onclick="showResult('some')">A few hours in the morning and evening</button>
+          <button class="quiz-opt" onclick="showResult('little')">Limited — I'm often busy</button>
+        </div>
+      </div>
+
+      <div class="quiz-result hidden" id="quizResult">
+        <div class="quiz-result-icon" id="resultIcon"></div>
+        <h3 id="resultTitle"></h3>
+        <p id="resultDesc"></p>
+        <div class="quiz-result-btns">
+          <a href="pets.html" class="btn btn-primary">See Available Pets</a>
+          <button class="btn btn-secondary" onclick="resetQuiz()">Retake Quiz</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ✨ Testimonials -->
+  <section class="testimonials">
+    <div class="section-header">
+      <h2>Happy Adoption Stories</h2>
+      <p>Hear from families who found their perfect match.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-text">"I was so nervous as a first-time owner, but the team atPaws & Home walked me through everything. Bringing Luna home was the best decision I've ever made."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">S</div>
+          <div>
+            <strong>Sarah K.</strong>
+            <span>Adopted Luna the Tabby Cat</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">"Max is the most loving dog. The process was smooth and the team really helped match me with a dog that fits my apartment lifestyle perfectly."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">J</div>
+          <div>
+            <strong>James T.</strong>
+            <span>Adopted Max the Golden Retriever</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">"As a college student I wasn't sure I was ready, butPaws & Home helped me understand what to expect. Mochi and I are inseparable now!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div>
+            <strong>Amy L.</strong>
+            <span>Adopted Mochi the Persian Cat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="cta-content">
+      <h2>Ready to Find Your New Best Friend?</h2>
+      <p>Start your adoption journey today. It only takes a few minutes to apply.</p>
+      <a href="apply.html" class="btn btn-white">Start Application</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="logo">Paws & Home</p>
+        <p>Making pet adoption simple,<br/>welcoming, and joyful.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="pets.html">Available Pets</a></li>
+          <li><a href="process.html">Adoption Process</a></li>
+          <li><a href="apply.html">Apply Now</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>yujiahao@umich.edu</p>
+        <p>(513) 726-8898</p>
+        <p>Ann Arbor, MI</p>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025Paws & Home. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // ── Mobile Menu ──
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('open');
+    }
+
+    // ── Animated Stats Counter ──
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          document.querySelectorAll('.stat-number[data-target]').forEach(el => {
+            const target = parseInt(el.dataset.target);
+            let current = 0;
+            const step = Math.ceil(target / 40);
+            const timer = setInterval(() => {
+              current = Math.min(current + step, target);
+              el.textContent = current;
+              if (current >= target) clearInterval(timer);
+            }, 30);
+          });
+          statsObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+    statsObserver.observe(document.querySelector('.stats'));
+
+    // ── Carousel ──
+    let currentSlide = 0;
+    const track = document.getElementById('carouselTrack');
+    const slides = track.querySelectorAll('.carousel-slide');
+    const dotsContainer = document.getElementById('carouselDots');
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlide(i);
+      dotsContainer.appendChild(dot);
+    });
+
+    function visibleCount() {
+      return window.innerWidth < 600 ? 1 : window.innerWidth < 960 ? 2 : 3;
+    }
+
+    function updateCarousel() {
+      const vc = visibleCount();
+      const maxSlide = slides.length - vc;
+      if (currentSlide > maxSlide) currentSlide = maxSlide;
+      const slideWidth = track.parentElement.offsetWidth / vc;
+      slides.forEach(s => { s.style.minWidth = slideWidth + 'px'; });
+      track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+      document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === currentSlide);
+      });
+    }
+
+    function moveCarousel(dir) {
+      const vc = visibleCount();
+      const maxSlide = slides.length - vc;
+      currentSlide += dir;
+      if (currentSlide > maxSlide) currentSlide = 0;
+      if (currentSlide < 0) currentSlide = maxSlide;
+      updateCarousel();
+    }
+
+    function goToSlide(i) {
+      currentSlide = i;
+      updateCarousel();
+    }
+
+    window.addEventListener('resize', updateCarousel);
+    window.addEventListener('load', updateCarousel);
+
+    // Auto-play
+    let autoPlay = setInterval(() => moveCarousel(1), 4000);
+    track.parentElement.addEventListener('mouseenter', () => clearInterval(autoPlay));
+    track.parentElement.addEventListener('mouseleave', () => {
+      autoPlay = setInterval(() => moveCarousel(1), 4000);
+    });
+
+    // Touch swipe
+    let touchStartX = 0;
+    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+    track.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) moveCarousel(diff > 0 ? 1 : -1);
+    });
+
+    // ── Quiz ──
+    const quizAnswers = {};
+
+    function nextQ(currentId, nextId, answer) {
+      quizAnswers[currentId] = answer;
+      document.getElementById(currentId).classList.add('hidden');
+      document.getElementById(nextId).classList.remove('hidden');
+    }
+
+    function showResult(timeAnswer) {
+      quizAnswers['q3'] = timeAnswer;
+      document.getElementById('q3').classList.add('hidden');
+
+      const activity = quizAnswers['q1'];
+      const living = quizAnswers['q2'];
+      let icon, title, desc;
+
+      if (activity === 'active' || living === 'house') {
+        icon = 'dog';
+        title = "You'd be great with a Dog!";
+        desc = 'Your active lifestyle and living space are a perfect match for a playful dog like Max or Daisy. Dogs thrive with outdoor adventures and your attention.';
+      } else if (living === 'apartment' && timeAnswer === 'little') {
+        icon = 'cat';
+        title = 'A Cat sounds perfect for you!';
+        desc = 'Cats are independent and adapt beautifully to smaller living spaces. Luna or Mochi would love a cozy apartment with a caring owner.';
+      } else if (activity === 'relaxed' || timeAnswer === 'some') {
+        icon = 'cat';
+        title = 'A Cat would suit your lifestyle!';
+        desc = "You'll enjoy relaxed companionship. Cats are affectionate but self-sufficient — ideal for a balanced daily schedule.";
+      } else {
+        icon = '';
+        title = 'Any pet would love your home!';
+        desc = "You seem flexible and caring — both cats and dogs would thrive with you. Browse our pets and trust your instincts!";
+      }
+
+      setResultIcon(icon);
+      document.getElementById('resultTitle').textContent = title;
+      document.getElementById('resultDesc').textContent = desc;
+      document.getElementById('quizResult').classList.remove('hidden');
+    }
+
+    function resetQuiz() {
+      ['q2','q3','quizResult'].forEach(id => document.getElementById(id).classList.add('hidden'));
+      document.getElementById('q1').classList.remove('hidden');
+      Object.keys(quizAnswers).forEach(k => delete quizAnswers[k]);
+    }
+
+    function setResultIcon(type) {
+      const el = document.getElementById('resultIcon');
+      const svgs = {
+        dog: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="52" height="52"><path d="M10 5.172C10 3.782 8.423 2.993 7.307 3.843L4.121 6.293A4 4 0 003 9.087V19a2 2 0 002 2h14a2 2 0 002-2v-9.913a4 4 0 00-1.121-2.794l-3.186-2.45C15.577 2.993 14 3.782 14 5.172V8h-4V5.172z"/><circle cx="9" cy="13" r="1" fill="currentColor"/><circle cx="15" cy="13" r="1" fill="currentColor"/></svg>',
+        cat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="52" height="52"><path d="M4 6V4l4 3M20 6V4l-4 3M12 5C7 5 4 9 4 13v2a2 2 0 002 2h12a2 2 0 002-2v-2c0-4-3-8-8-8z"/><circle cx="9" cy="13" r="1" fill="currentColor"/><circle cx="15" cy="13" r="1" fill="currentColor"/><path d="M9 17c1 1 5 1 6 0"/></svg>',
+        paw:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="52" height="52"><circle cx="7" cy="8" r="2"/><circle cx="17" cy="8" r="2"/><circle cx="4" cy="14" r="1.5"/><circle cx="20" cy="14" r="1.5"/><path d="M12 10c-3 0-6 2.5-6 6 0 2 1.5 3 3 3h6c1.5 0 3-1 3-3 0-3.5-3-6-6-6z"/></svg>',
+      };
+      el.innerHTML = svgs[type] || svgs['paw'];
+    }
+  </script>
+</body>
+</html>

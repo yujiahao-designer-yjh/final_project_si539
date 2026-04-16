@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQ –Paws & Home</title>
+  <link rel="stylesheet" href="css/html5reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="logo">Paws & Home</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="pets.html">Available Pets</a></li>
+      <li><a href="process.html">Adoption Process</a></li>
+      <li><a href="apply.html">Apply Now</a></li>
+      <li><a href="faq.html" class="active">FAQ</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </nav>
+
+  <section class="page-header">
+    <h1>Frequently Asked Questions</h1>
+    <p>Everything you need to know as a first-time pet adopter.</p>
+  </section>
+
+  <!-- ✨ FAQ Search Bar -->
+  <section class="faq-search-section">
+    <div class="faq-search-wrapper">
+      <input
+        type="text"
+        id="faqSearch"
+        class="faq-search-input"
+        placeholder="Search questions..."
+        oninput="searchFAQ()"
+      />
+      <span class="faq-search-count" id="faqSearchCount"></span>
+    </div>
+    <div id="faqNoResults" class="faq-no-results hidden">
+      <p>No questions match "<span id="noResultsQuery"></span>". <button onclick="clearFAQSearch()">Clear search</button></p>
+    </div>
+  </section>
+
+  <!-- FAQ Content -->
+  <section class="faq-section" id="faqContent">
+
+    <div class="faq-category" data-category="process">
+      <h2 class="faq-category-title"> About the Adoption Process</h2>
+
+      <div class="faq-item" data-question="how long does the adoption process take">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          How long does the adoption process take?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>The process typically takes 3–7 days from application to bringing your pet home. After you submit your application, our team reviews it within 24–48 hours. If approved, we schedule a meet-and-greet, and adoption can be finalized shortly after.</p>
+          <div class="faq-vote" data-id="q1">
+            <span>Was this helpful?</span>
+            <button class="vote-btn" onclick="vote('q1', true, this)">👍 Yes</button>
+            <button class="vote-btn" onclick="vote('q1', false, this)">👎 No</button>
+            <span class="vote-result hidden" id="vote-q1"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" data-question="can first time pet owners apply first-time">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Can first-time pet owners apply?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Absolutely!Paws & Home was specifically designed with first-time owners in mind. We provide resources, guidance, and support throughout your adoption journey. We match pets to your experience level and lifestyle.</p>
+          <div class="faq-vote" data-id="q2">
+            <span>Was this helpful?</span>
+            <button class="vote-btn" onclick="vote('q2', true, this)">👍 Yes</button>
+            <button class="vote-btn" onclick="vote('q2', false, this)">👎 No</button>
+            <span class="vote-result hidden" id="vote-q2"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" data-question="what if my application is not approved rejected">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          What if my application is not approved?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>If your application is not approved, our team will let you know and provide feedback. In many cases, minor issues can be resolved and you can reapply. Our goal is to find the best home for each pet — not to turn people away.</p>
+          <div class="faq-vote" data-id="q3">
+            <span>Was this helpful?</span>
+            <button class="vote-btn" onclick="vote('q3', true, this)">👍 Yes</button>
+            <button class="vote-btn" onclick="vote('q3', false, this)">👎 No</button>
+            <span class="vote-result hidden" id="vote-q3"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" data-question="can i adopt if i rent renting landlord apartment">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Can I adopt if I rent my home?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes! Renters are welcome to apply. You will need to confirm that your landlord allows pets. We may ask for written proof of pet approval from your landlord before finalizing the adoption.</p>
+          <div class="faq-vote" data-id="q4">
+            <span>Was this helpful?</span>
+            <button class="vote-btn" onclick="vote('q4', true, this)">👍 Yes</button>
+            <button class="vote-btn" onclick="vote('q4', false, this)">👎 No</button>
+            <span class="vote-result hidden" id="vote-q4"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-category" data-category="pets">
+      <h2 class="faq-category-title">About the Pets</h2>
+
+      <div class="faq-item" data-question="are the pets vaccinated healthy health check">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Are the pets vaccinated and healthy?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes. All pets are fully vaccinated, spayed or neutered, microchipped, and given a health check by a licensed veterinarian before listing. You receive a complete health record at adoption.</p>
+          <div class="faq-vote" data-id="q5">
+            <span>Was this helpful?</span>
+            <button class="vote-btn" onclick="vote('q5', true, this)">👍 Yes</button>
+            <button class="vote-btn" onclick="vote('q5', false, this)">👎 No</button>
+            <span class="vote-result hidden" id="vote-q5"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" data-question="what does pending status mean on hold waitlist">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          What does "Pending" status mean?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>A pet with "Pending" status has an active application in review. You are still welcome to express interest — if the current application falls through, you may be next in line.</p>
+          <div class="faq-vote" data-id="q6">
+            <span>Was this helpful?</span>
+            <button class="vote-btn" onclick="vote('q6', true, this)">👍 Yes</button>
+            <button class="vote-btn" onclick="vote('q6', false, this)">👎 No</button>
+            <span class="vote-result hidden" id="vote-q6"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" data-question="can i adopt a specific pet choose pick">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Can I adopt a specific pet I saw online?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes! On the application, you can choose a specific pet you're interested in. You can also select "Open to any pet" and we'll help match you based on your lifestyle and answers.</p>
+          <div class="faq-vote" data-id="q7">
+            <span>Was this helpful?</span>
+            <button class="vote-btn" onclick="vote('q7', true, this)">👍 Yes</button>
+            <button class="vote-btn" onclick="vote('q7', false, this)">👎 No</button>
+            <span class="vote-result hidden" id="vote-q7"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" data-question="are the pets good with kids children other animals dogs cats">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Are the pets good with kids or other animals?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Each pet has their own personality. Notes on each pet's profile describe how they get along with children, other pets, or specific environments. We also discuss this during the meet-and-greet.</p>
+          <div class="faq-vote" data-id="q8">
+            <span>Was this helpful?</span>
+            <button class="vote-btn" onclick="vote('q8', true, this)">👍 Yes</button>
+            <button class="vote-btn" onclick="vote('q8', false, this)">👎 No</button>
+            <span class="vote-result hidden" id="vote-q8"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-category" data-category="fees">
+      <h2 class="faq-category-title"> Fees & Finances</h2>
+
+      <div class="faq-item" data-question="how much does adoption cost fee price">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          How much does adoption cost?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Adoption fees are $150 for dogs and $100 for cats. These fees cover the cost of vaccinations, spay/neuter surgery, microchipping, and shelter care. Fees are paid when the adoption is finalized.</p>
+          <div class="faq-vote" data-id="q9">
+            <span>Was this helpful?</span>
+            <button class="vote-btn" onclick="vote('q9', true, this)">👍 Yes</button>
+            <button class="vote-btn" onclick="vote('q9', false, this)">👎 No</button>
+            <span class="vote-result hidden" id="vote-q9"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" data-question="what ongoing costs monthly expenses food vet">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          What ongoing costs should I expect as a new pet owner?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>Ongoing costs include food ($30–$80/month), routine vet visits ($100–$300/year), supplies, and potential emergency medical costs. We recommend setting aside a small emergency fund for your pet's health care.</p>
+          <div class="faq-vote" data-id="q10">
+            <span>Was this helpful?</span>
+            <button class="vote-btn" onclick="vote('q10', true, this)">👍 Yes</button>
+            <button class="vote-btn" onclick="vote('q10', false, this)">👎 No</button>
+            <span class="vote-result hidden" id="vote-q10"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-category" data-category="after">
+      <h2 class="faq-category-title"> After Adoption</h2>
+
+      <div class="faq-item" data-question="what support after i bring my pet home post-adoption">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          What support do you offer after I bring my pet home?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>We offer post-adoption check-ins via email and phone for the first 30 days, plus a new pet owner guide with tips on feeding schedules, introducing your pet to a new home, vet recommendations, and training resources.</p>
+          <div class="faq-vote" data-id="q11">
+            <span>Was this helpful?</span>
+            <button class="vote-btn" onclick="vote('q11', true, this)">👍 Yes</button>
+            <button class="vote-btn" onclick="vote('q11', false, this)">👎 No</button>
+            <span class="vote-result hidden" id="vote-q11"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" data-question="what if adoption doesn't work out return">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          What if the adoption doesn't work out?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>If the adoption doesn't work out within the first 30 days, please contact us. We will work with you to find a solution, which may include returning the pet to us. We never want a pet to be placed in a stressful situation.</p>
+          <div class="faq-vote" data-id="q12">
+            <span>Was this helpful?</span>
+            <button class="vote-btn" onclick="vote('q12', true, this)">👍 Yes</button>
+            <button class="vote-btn" onclick="vote('q12', false, this)">👎 No</button>
+            <span class="vote-result hidden" id="vote-q12"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" data-question="how do i prepare my home before bringing a pet checklist">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          How do I prepare my home before bringing a pet home?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          <p>We recommend preparing a few basics: a safe space (bed or crate), food and water bowls, pet-appropriate food, a leash or litter box, and removing any hazardous items from reach. We'll send you a complete checklist after your application is approved.</p>
+          <div class="faq-vote" data-id="q13">
+            <span>Was this helpful?</span>
+            <button class="vote-btn" onclick="vote('q13', true, this)">👍 Yes</button>
+            <button class="vote-btn" onclick="vote('q13', false, this)">👎 No</button>
+            <span class="vote-result hidden" id="vote-q13"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Still have questions -->
+  <section class="faq-contact">
+    <h2>Still have questions?</h2>
+    <p>We're here to help. Reach out to our team directly.</p>
+    <div class="contact-options">
+      <a href="mailto:hello@pawsandhome.org" class="contact-card">
+        <span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span><p>hello@pawsandhome.org</p>
+      </a>
+      <a href="tel:7345550192" class="contact-card">
+        <span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="24" height="24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.18 1.2 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.08 6.08l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span><p>(734) 555-0192</p>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><p class="logo">Paws & Home</p><p>Making pet adoption simple,<br/>welcoming, and joyful.</p></div>
+      <div class="footer-links"><h4>Pages</h4><ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pets.html">Available Pets</a></li>
+        <li><a href="process.html">Adoption Process</a></li>
+        <li><a href="apply.html">Apply Now</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul></div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>yujiahao@umich.edu</p>
+        <p>(513) 726-8898</p>
+        <p>Ann Arbor, MI</p>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025Paws & Home. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() { document.querySelector('.nav-links').classList.toggle('open'); }
+
+    // ── Accordion ──
+    function toggleFAQ(btn) {
+      const answer = btn.nextElementSibling;
+      const arrow = btn.querySelector('.faq-arrow');
+      const isOpen = answer.classList.contains('open');
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+      document.querySelectorAll('.faq-arrow').forEach(a => a.style.transform = 'rotate(0deg)');
+      if (!isOpen) { answer.classList.add('open'); arrow.style.transform = 'rotate(180deg)'; }
+    }
+
+    // ── FAQ Search ──
+    function searchFAQ() {
+      const query = document.getElementById('faqSearch').value.toLowerCase().trim();
+      const items = document.querySelectorAll('.faq-item');
+      const categories = document.querySelectorAll('.faq-category');
+      let visibleCount = 0;
+
+      items.forEach(item => {
+        const text = (item.dataset.question + ' ' + item.querySelector('.faq-question').textContent + ' ' + (item.querySelector('.faq-answer p')?.textContent || '')).toLowerCase();
+        const match = !query || text.includes(query);
+        item.style.display = match ? '' : 'none';
+        if (match) visibleCount++;
+      });
+
+      // Hide empty categories
+      categories.forEach(cat => {
+        const hasVisible = Array.from(cat.querySelectorAll('.faq-item')).some(i => i.style.display !== 'none');
+        cat.style.display = hasVisible ? '' : 'none';
+      });
+
+      const countEl = document.getElementById('faqSearchCount');
+      const noResults = document.getElementById('faqNoResults');
+      if (query) {
+        countEl.textContent = `${visibleCount} result${visibleCount !== 1 ? 's' : ''} found`;
+        if (visibleCount === 0) {
+          noResults.classList.remove('hidden');
+          document.getElementById('noResultsQuery').textContent = query;
+        } else {
+          noResults.classList.add('hidden');
+        }
+      } else {
+        countEl.textContent = '';
+        noResults.classList.add('hidden');
+      }
+    }
+
+    function clearFAQSearch() {
+      document.getElementById('faqSearch').value = '';
+      searchFAQ();
+    }
+
+    // ── Helpful Votes ──
+    const votes = JSON.parse(localStorage.getItem('pawsFaqVotes') || '{}');
+
+    // Restore vote states on load
+    window.addEventListener('load', () => {
+      Object.keys(votes).forEach(id => {
+        const el = document.getElementById('vote-' + id);
+        if (el) {
+          el.textContent = votes[id] ? '✓ Marked as helpful' : '✓ Thanks for your feedback';
+          el.classList.remove('hidden');
+          const btns = el.previousElementSibling;
+          disableVoteBtns(id);
+        }
+      });
+    });
+
+    function vote(id, helpful, btn) {
+      if (votes[id] !== undefined) return;
+      votes[id] = helpful;
+      localStorage.setItem('pawsFaqVotes', JSON.stringify(votes));
+      const resultEl = document.getElementById('vote-' + id);
+      resultEl.textContent = helpful ? '✓ Marked as helpful' : '✓ Thanks for your feedback';
+      resultEl.classList.remove('hidden');
+      disableVoteBtns(id);
+    }
+
+    function disableVoteBtns(id) {
+      const voteBox = document.querySelector(`.faq-vote[data-id="${id}"]`);
+      if (voteBox) voteBox.querySelectorAll('.vote-btn').forEach(b => { b.disabled = true; b.style.opacity = '0.4'; });
+    }
+  </script>
+</body>
+</html>
